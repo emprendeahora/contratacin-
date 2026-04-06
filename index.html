@@ -69,24 +69,73 @@
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
                 <div class="mb-5">
                     <h2 class="text-lg font-bold flex items-center gap-2 text-slate-800">
-                        <i data-lucide="upload-cloud" class="w-5 h-5 text-slate-700"></i>
-                        Documentos del Mentor
+                        <i data-lucide="folder-open" class="w-5 h-5 text-slate-700"></i>
+                        Documentos Requeridos
                     </h2>
-                    <p class="text-sm text-slate-500 mt-1">Sube tu CV, certificaciones, foto de perfil o cualquier documento requerido.</p>
+                    <p class="text-sm text-slate-500 mt-1">Por favor, adjunta los siguientes 4 documentos obligatorios para completar tu perfil.</p>
                 </div>
 
-                <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center hover:bg-slate-50 transition-colors relative cursor-pointer group">
-                    <input type="file" id="file-upload" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" title="Haz clic para subir documentos" />
-                    <div class="flex flex-col items-center gap-3 pointer-events-none">
-                        <div class="bg-slate-100 p-4 rounded-full group-hover:bg-slate-200 transition-colors">
-                            <i data-lucide="upload-cloud" class="w-8 h-8 text-slate-600"></i>
+                <div class="space-y-3">
+                    <!-- Documento 1: CV -->
+                    <div class="p-4 border border-slate-200 rounded-xl bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">1. CV Actualizado (Formato ATS)</h3>
+                            <p class="text-xs text-slate-500 mt-1">Enfocado en consultorías y asesorías. No requiere soportes.</p>
                         </div>
-                        <span class="text-slate-800 font-semibold text-lg">Haz clic aquí o arrastra tus documentos</span>
-                        <span class="text-slate-500 text-sm">Formatos sugeridos: PDF, DOCX, JPG, PNG (Max. 5MB)</span>
+                        <div class="flex-shrink-0 flex items-center">
+                            <input type="file" id="file-cv" class="hidden" onchange="handleFileSelect('cv', this)" accept=".pdf,.doc,.docx">
+                            <label for="file-cv" id="label-cv" class="cursor-pointer bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 shadow-sm">
+                                <i data-lucide="upload" class="w-4 h-4"></i> Subir Archivo
+                            </label>
+                            <div id="status-cv" class="hidden items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200 text-sm font-medium"></div>
+                        </div>
+                    </div>
+
+                    <!-- Documento 2: RUT -->
+                    <div class="p-4 border border-slate-200 rounded-xl bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">2. RUT</h3>
+                            <p class="text-xs text-slate-500 mt-1">Registro Único Tributario actualizado.</p>
+                        </div>
+                        <div class="flex-shrink-0 flex items-center">
+                            <input type="file" id="file-rut" class="hidden" onchange="handleFileSelect('rut', this)" accept=".pdf,.jpg,.png">
+                            <label for="file-rut" id="label-rut" class="cursor-pointer bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 shadow-sm">
+                                <i data-lucide="upload" class="w-4 h-4"></i> Subir Archivo
+                            </label>
+                            <div id="status-rut" class="hidden items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200 text-sm font-medium"></div>
+                        </div>
+                    </div>
+
+                    <!-- Documento 3: CC -->
+                    <div class="p-4 border border-slate-200 rounded-xl bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">3. Cédula de Ciudadanía (CC)</h3>
+                            <p class="text-xs text-slate-500 mt-1">Copia del documento de identidad vigente.</p>
+                        </div>
+                        <div class="flex-shrink-0 flex items-center">
+                            <input type="file" id="file-cc" class="hidden" onchange="handleFileSelect('cc', this)" accept=".pdf,.jpg,.png">
+                            <label for="file-cc" id="label-cc" class="cursor-pointer bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 shadow-sm">
+                                <i data-lucide="upload" class="w-4 h-4"></i> Subir Archivo
+                            </label>
+                            <div id="status-cc" class="hidden items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200 text-sm font-medium"></div>
+                        </div>
+                    </div>
+
+                    <!-- Documento 4: Certificado Bancario -->
+                    <div class="p-4 border border-slate-200 rounded-xl bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">4. Certificado Bancario</h3>
+                            <p class="text-xs text-slate-500 mt-1">Documento bancario vigente (No mayor a 30 días).</p>
+                        </div>
+                        <div class="flex-shrink-0 flex items-center">
+                            <input type="file" id="file-certificado" class="hidden" onchange="handleFileSelect('certificado', this)" accept=".pdf,.jpg,.png">
+                            <label for="file-certificado" id="label-certificado" class="cursor-pointer bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 shadow-sm">
+                                <i data-lucide="upload" class="w-4 h-4"></i> Subir Archivo
+                            </label>
+                            <div id="status-certificado" class="hidden items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-200 text-sm font-medium"></div>
+                        </div>
                     </div>
                 </div>
-                <!-- Contenedor dinámico de archivos -->
-                <div id="lista-archivos"></div>
             </div>
 
             <!-- Sección 2: Horario Semanal -->
@@ -149,7 +198,19 @@
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysYi988s6Km7Nc4sGTZCu_GmKea3781jA3vlZTkBtsqXNbXoxV8CbQHd1EoyHi1jXimw/exec';
 
         // Variables de estado
-        let archivos = [];
+        let archivos = {
+            cv: null,
+            rut: null,
+            cc: null,
+            certificado: null
+        };
+        const docNombres = {
+            cv: "1_CV",
+            rut: "2_RUT",
+            cc: "3_CC",
+            certificado: "4_CertificadoBancario"
+        };
+        
         let excepciones = [];
         const DAYS_OF_WEEK = [
             { id: 'lunes', label: 'Lunes' }, { id: 'martes', label: 'Martes' },
@@ -321,45 +382,49 @@
             renderExcepciones();
         }
 
-        // --- FUNCIONES PARA ARCHIVOS ---
-        function renderArchivos() {
-            const container = document.getElementById('lista-archivos');
-            if (archivos.length === 0) {
-                container.innerHTML = '';
-                return;
-            }
-            
-            let html = '<div class="mt-4 space-y-2">';
-            archivos.forEach((file, index) => {
-                const sizeMB = (file.size / 1024 / 1024).toFixed(2);
-                html += `
-                <div class="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200">
-                    <div class="flex items-center gap-3 overflow-hidden">
-                        <i data-lucide="file" class="w-5 h-5 text-slate-500 flex-shrink-0"></i>
-                        <span class="text-sm font-medium text-slate-700 truncate">${file.name}</span>
-                        <span class="text-xs text-slate-400">(${sizeMB} MB)</span>
-                    </div>
-                    <button type="button" onclick="eliminarArchivo(${index})" class="text-slate-400 hover:text-red-600 p-1.5 hover:bg-red-50 rounded-lg transition-colors">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+        // --- FUNCIONES PARA ARCHIVOS ESPECÍFICOS ---
+        function handleFileSelect(docType, inputElement) {
+            if (inputElement.files && inputElement.files[0]) {
+                const file = inputElement.files[0];
+                
+                // Validar tamaño máximo (5MB)
+                if(file.size > 5 * 1024 * 1024) {
+                    alert("El archivo es demasiado grande. El límite por documento es de 5MB.");
+                    inputElement.value = '';
+                    return;
+                }
+
+                archivos[docType] = file;
+                const statusDiv = document.getElementById(`status-${docType}`);
+                const labelBtn = document.getElementById(`label-${docType}`);
+                
+                labelBtn.classList.add('hidden');
+                statusDiv.classList.remove('hidden');
+                statusDiv.classList.add('flex');
+                
+                const shortName = file.name.length > 20 ? file.name.substring(0, 20) + '...' : file.name;
+                
+                statusDiv.innerHTML = `
+                    <i data-lucide="file-check-2" class="w-4 h-4"></i>
+                    <span class="truncate" title="${file.name}">${shortName}</span>
+                    <button type="button" onclick="removeFile('${docType}')" class="text-red-500 hover:text-red-700 ml-1 bg-white rounded-full p-0.5">
+                        <i data-lucide="x" class="w-3 h-3"></i>
                     </button>
-                </div>`;
-            });
-            html += '</div>';
-            container.innerHTML = html;
-            lucide.createIcons();
+                `;
+                lucide.createIcons();
+            }
         }
 
-        document.getElementById('file-upload').addEventListener('change', (e) => {
-            if (e.target.files) {
-                archivos.push(...Array.from(e.target.files));
-                renderArchivos();
-            }
-            e.target.value = ''; // Resetear input
-        });
-
-        function eliminarArchivo(index) {
-            archivos.splice(index, 1);
-            renderArchivos();
+        function removeFile(docType) {
+            archivos[docType] = null;
+            document.getElementById(`file-${docType}`).value = ''; 
+            
+            const statusDiv = document.getElementById(`status-${docType}`);
+            const labelBtn = document.getElementById(`label-${docType}`);
+            
+            statusDiv.classList.add('hidden');
+            statusDiv.classList.remove('flex');
+            labelBtn.classList.remove('hidden');
         }
 
         // --- LÓGICA DE ENVÍO A GOOGLE DRIVE ---
@@ -374,6 +439,13 @@
 
         document.getElementById('formulario-mentor').addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // Validación: Asegurar que los 4 documentos se hayan adjuntado
+            if (!archivos.cv || !archivos.rut || !archivos.cc || !archivos.certificado) {
+                alert("Por favor, sube los 4 documentos requeridos (CV, RUT, CC y Certificado Bancario) antes de guardar tu disponibilidad.");
+                return;
+            }
+
             const btnSubmit = document.getElementById('btn-submit');
             const btnText = document.getElementById('btn-text');
             const alertGuardado = document.getElementById('alert-guardado');
@@ -382,12 +454,20 @@
             btnText.innerText = 'Guardando en Drive...';
 
             try {
-                const archivosProcesados = await Promise.all(
-                    archivos.map(async (archivo) => {
-                        const base64 = await convertirABase64(archivo);
-                        return { nombre: archivo.name, tipo: archivo.type, base64: base64 };
-                    })
-                );
+                // Procesar y renombrar los archivos antes de enviarlos
+                const archivosProcesados = [];
+                for (const key in archivos) {
+                    if (archivos[key]) {
+                        const base64 = await convertirABase64(archivos[key]);
+                        const extension = archivos[key].name.split('.').pop();
+                        
+                        archivosProcesados.push({ 
+                            nombre: `${docNombres[key]}.${extension}`, // Ej: "1_CV.pdf"
+                            tipo: archivos[key].type, 
+                            base64: base64 
+                        });
+                    }
+                }
 
                 const payload = {
                     mentor: {
@@ -410,9 +490,8 @@
                 alertGuardado.classList.remove('hidden');
                 alertGuardado.classList.add('flex');
                 
-                // Limpiar archivos
-                archivos = [];
-                renderArchivos();
+                // Limpiar la interfaz después de subir
+                ['cv', 'rut', 'cc', 'certificado'].forEach(key => removeFile(key));
 
                 setTimeout(() => {
                     alertGuardado.classList.add('hidden');
